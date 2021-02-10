@@ -6,8 +6,12 @@ module Seinfeld
   class Data
     include Singleton
 
+    def path
+      "#{Dir.home}/.seinfeld"
+    end
+
     def initialize
-      @goals = JSON.parse(File.read("#{Dir.home}/.seinfeld")) # todo error handling
+      @goals = JSON.parse(File.read(path)) # todo error handling
     end
 
     def goals
@@ -35,6 +39,28 @@ module Seinfeld
       end
 
       streak 
+    end
+
+    def mark(goal, day)
+      if not is_a_goal?(goal)
+        puts "error: #{goal} isn't a goal"
+        return
+      end
+
+      if was_marked?(goal, day)
+        puts "#{goal} is already marked for #{day.iso8601}"
+        return
+      end
+
+      @goals[goal]["marks"] << day.iso8601
+      puts "\e[32mmarked #{goal} for #{day.iso8601}\e[0m"
+    end
+
+    def save
+      File.open(path, "w") do |f|
+        f.write(@goals.to_json)
+        puts "saved!"
+      end
     end
   end
 end
