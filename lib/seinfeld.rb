@@ -35,27 +35,22 @@ module Seinfeld
 
   class CLI
     def self.start
-      case ARGV[0]
-      when "new"
-        if ARGV.length < 2
-          usage
-        else
-          ARGV.drop(1).each do |name|
-            Data.instance.add_goal(name)
-          end
-          Data.instance.save
+      case ARGV
+      in ["new", *goals] unless goals.empty?
+        goals.each do |name|
+          Data.instance.add_goal(name)
         end
-      when "compact"
+        Data.instance.save
+
+      in ["compact", *goals]
         Views.compact(ARGV.drop(1))
-      when "mark"
-        if ARGV.length < 2
-          usage
-        else
-          for goal in ARGV.drop(1)
-            Data.instance.mark(goal, Seinfeld.today)
-          end
-          Data.instance.save
+
+      in ["mark", *goals] unless goals.empty?
+        goals.each do |goal|
+          Data.instance.mark(goal, Seinfeld.today)
         end
+        Data.instance.save
+
       else
         usage
       end

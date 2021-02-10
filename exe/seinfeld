@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+Warning[:experimental] = false
 require 'seinfeld'
 
 Seinfeld::CLI.start
