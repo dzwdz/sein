@@ -36,6 +36,15 @@ module Seinfeld
   class CLI
     def self.start
       case ARGV[0]
+      when "new"
+        if ARGV.length < 2
+          usage
+        else
+          ARGV.drop(1).each do |name|
+            Data.instance.add_goal(name)
+          end
+          Data.instance.save
+        end
       when "compact"
         Views.compact(ARGV.drop(1))
       when "mark"

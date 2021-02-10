@@ -11,7 +11,7 @@ module Seinfeld
     end
 
     def initialize
-      @goals = JSON.parse(File.read(path)) # todo error handling
+      @goals = JSON.parse(File.read(path)) rescue {}
     end
 
     def goals
@@ -39,6 +39,15 @@ module Seinfeld
       end
 
       streak 
+    end
+
+    def add_goal(name)
+      if is_a_goal?(name)
+        puts "error: #{name} already exists"
+      else
+        @goals[name] = {"marks":[]}
+        puts "created #{name}"
+      end
     end
 
     def mark(goal, day)
