@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'seinfeld'
+
+Seinfeld::CLI.start
