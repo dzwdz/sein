@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in seinfeld.gemspec
+# Specify your gem's dependencies in sein.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

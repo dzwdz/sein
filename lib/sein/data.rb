@@ -2,12 +2,12 @@ require 'singleton'
 require 'json'
 require 'date'
 
-module Seinfeld
+module Sein
   class Data
     include Singleton
 
     def path
-      "#{Dir.home}/.seinfeld"
+      "#{Dir.home}/.sein"
     end
 
     def initialize

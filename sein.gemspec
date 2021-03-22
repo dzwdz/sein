@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/seinfeld/version"
+require_relative "lib/sein/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "seinfeld"
-  spec.version       = Seinfeld::VERSION
+  spec.name          = "sein"
+  spec.version       = Sein::VERSION
   spec.authors       = ["dzwdz"]
   spec.email         = ["kg67199@gmail.com"]
 
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{\A(?:test|spec|features)/}) }
   end
   spec.bindir        = "exe"
-  spec.executables   = ["seinfeld"] 
+  spec.executables   = ["sein"] 
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem

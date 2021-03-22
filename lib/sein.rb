@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "seinfeld/version"
-require_relative "seinfeld/data"
+require_relative "sein/version"
+require_relative "sein/data"
 require 'date'
 
-module Seinfeld
+module Sein
   class Error < StandardError; end
   
   # the midnight is switched to 5 AM, because i often mark stuff after midnight
@@ -22,7 +22,7 @@ module Seinfeld
       end
 
       for goal in goals
-        if data.was_marked?(goal, Seinfeld.today)
+        if data.was_marked?(goal, Sein.today)
           print "*\e[32m" # todo use some ANSI lib
         end
         print "#{goal} #{data.count_streak(goal)}"
@@ -47,7 +47,7 @@ module Seinfeld
 
       in ["mark", *goals] unless goals.empty?
         goals.each do |goal|
-          Data.instance.mark(goal, Seinfeld.today)
+          Data.instance.mark(goal, Sein.today)
         end
         Data.instance.save
 

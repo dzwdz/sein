@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 Warning[:experimental] = false
-require 'seinfeld'
+require 'sein'
 
-Seinfeld::CLI.start
+Sein::CLI.start
