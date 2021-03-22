@@ -57,7 +57,11 @@ module Sein
     end
 
     def self.usage
-      puts "TODO"
+      puts "     command not recognized"
+      puts "     try one of those:"
+      puts "sein new GOALS...       - adds a new habit / daily goal"
+      puts "sein compact [GOALS...] - shows an overview of your goals"
+      puts "sein mark GOALS...      - marks a goal for today"
     end
   end
 end
