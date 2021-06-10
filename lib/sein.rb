@@ -31,6 +31,23 @@ module Sein
 
       print "\n"
     end
+
+    def self.compacter(goals)
+      data = Data.instance
+      if goals.empty?
+        goals = data.goals
+      end
+
+      for goal in goals
+        if data.was_marked?(goal, Sein.today)
+          print "*"
+        else
+          print "."
+        end
+      end
+
+      print "\n"
+    end
   end
 
   class CLI
@@ -44,6 +61,9 @@ module Sein
 
       in ["compact", *goals]
         Views.compact(ARGV.drop(1))
+
+      in ["compacter", *goals]
+        Views.compacter(ARGV.drop(1))
 
       in ["mark", *goals] unless goals.empty?
         goals.each do |goal|
@@ -59,9 +79,10 @@ module Sein
     def self.usage
       puts "     command not recognized"
       puts "     try one of those:"
-      puts "sein new GOALS...       - adds a new habit / daily goal"
-      puts "sein compact [GOALS...] - shows an overview of your goals"
-      puts "sein mark GOALS...      - marks a goal for today"
+      puts "sein new GOALS...         - adds a new habit / daily goal"
+      puts "sein compact [GOALS...]   - shows an overview of your goals"
+      puts "sein compacter [GOALS...] - shows an extermely minimal overview of your goals"
+      puts "sein mark GOALS...        - marks a goal for today"
     end
   end
 end
